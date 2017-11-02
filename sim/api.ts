@@ -1,5 +1,22 @@
 /// <reference path="../libs/core/enums.d.ts"/>
 
+namespace pxsim.world {
+
+    interface Scene {
+        /// ???
+    }
+
+    interface World<A> {
+        init: A
+        onTick:   ( handler: (s:A) => A ) => World<A>
+        onTickN:  ( handler: (s:A) => A,  n: number) => World<A>
+        toDraw:   ( drawer:  (s:A) => Scene) => World<A>
+        onKey:    ( handler: (s:A, k:string) => A) => World<A>
+        onMouse:  ( handler: (s:A, x:number, y:number, ev:string) => A) => World<A>
+        stopWhen: ( handler: (s:A) => boolean) => World<A>
+    }
+}
+
 namespace pxsim.turtle {
     /**
      * Moves the sprite forward
